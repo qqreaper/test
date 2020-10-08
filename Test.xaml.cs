@@ -21,25 +21,26 @@ namespace exam_test
     {
         public Test()
         {
-
             InitializeComponent();
-            
+
             TestTestClass test = new TestTestClass();
-            
+
             questionField.Content = test.question;
 
             AddAnsvers(test.answers, this);
         }
         private void AddAnsvers(List<string> ans, Test test)
         {
+            int TopMargin = 0;
             ans = new List<string>();
             ans.Add("asd");
             ans.Add("qwe");
             ans.Add("zxc");
-            test = new Test();
-            foreach(string item in ans)
+            foreach (string item in ans)
             {
-                test.AnsversGrid.Children.Add(new RadioButton() { Content = item});
+
+                test.AnsversGrid.Children.Add(new RadioButton() { Content = item, Margin = new Thickness(10, TopMargin, 10, 10) });
+                TopMargin += 20;
             }
         }
         public class TestTestClass
