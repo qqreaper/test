@@ -21,20 +21,20 @@ namespace exam_test
     public partial class TestChanger : Window
     {
         public static DataGrid datagrid;
+
+       
         public TestChanger()
         {
+            InitializeComponent();
 
             InCharger inCharger = new InCharger();
-
-
-            InitializeComponent();
             Load();
 
         }
 
         private void Load()
         {
-            myDataGrid.ItemsSource = db.ContactsSet.ToList();
+            myDataGrid.ItemsSource = test.ContactsSet.ToList();
             datagrid = myDataGrid;
 
         }
