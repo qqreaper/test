@@ -8,7 +8,28 @@
         Title="TestChanger" Height="450" Width="800">
     <Grid>
         <DockPanel Height="419" VerticalAlignment="Bottom">
-            <DataGrid x:Name="myDataGrid" x:FieldModifier="public" AutoGenerateColumns="False" ColumnWidth="*" Margin="0,10,0,0" />
+            <DataGrid x:Name="myDataGrid" x:FieldModifier="public" AutoGenerateColumns="False" ColumnWidth="*" Margin="0,10,0,0" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="50"/>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="120"/>
+                    
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="Action" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.HeaderTemplate>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate x:Name="TemplateOf">
+                                <StackPanel Orientation="Horizontal">
+                                    <Button x:Name="UpdateBtn" Content="Update" Click="updateBtn_Click" FontSize="12" Width="72" ></Button>
+                                    <Button x:Name="DeleteBtn" Content="Delete" Click="deleteBtn_Click" FontSize="12" Width="67"></Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
         </DockPanel>
     </Grid>
 </Window>
