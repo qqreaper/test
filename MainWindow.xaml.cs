@@ -23,6 +23,7 @@ namespace exam_test
         public MainWindow()
         {
             InitializeComponent();
+            new Test().ShowDialog();
         }
     }
 }

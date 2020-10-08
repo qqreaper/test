@@ -21,17 +21,33 @@ namespace exam_test
     {
         public Test()
         {
-            TestTestClass test = new TestTestClass();
 
-            questionField.Content = test.question;
             InitializeComponent();
-        }
+            
+            TestTestClass test = new TestTestClass();
+            
+            questionField.Content = test.question;
 
+            AddAnsvers(test.answers, this);
+        }
+        private void AddAnsvers(List<string> ans, Test test)
+        {
+            ans = new List<string>();
+            ans.Add("asd");
+            ans.Add("qwe");
+            ans.Add("zxc");
+            test = new Test();
+            foreach(string item in ans)
+            {
+                test.AnsversGrid.Children.Add(new RadioButton() { Content = item});
+            }
+        }
         public class TestTestClass
         {
             public string question = "qweqwe";
-            public int qquant = 3;
+            public List<string> answers;
             public int rightQnum = 2;
+            bool isRadio;
         }
     }
 }
