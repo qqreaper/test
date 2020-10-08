@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="TestChanger" Height="450" Width="800">
     <Grid>
-        
+        <DockPanel Height="419" VerticalAlignment="Bottom">
+            <DataGrid x:Name="myDataGrid" x:FieldModifier="public" AutoGenerateColumns="False" ColumnWidth="*" Margin="0,10,0,0" />
+        </DockPanel>
     </Grid>
 </Window>
