@@ -32,5 +32,7 @@
             </DataGrid>
         </DockPanel>
         <Button x:Name="ButtonBack" Content="Back" Margin="697,379,10,10" Click="ButtonBack_Click"></Button>
+        <Button x:Name="DeleteButton" Content="Delete" Margin="607,379,100,10" Click="DeleteButton_Click"/>
+        <Button x:Name="UpdateButton" Content="Update" Margin="517,379,190,10" Click="updateBtn_Click"/>
     </Grid>
 </Window>

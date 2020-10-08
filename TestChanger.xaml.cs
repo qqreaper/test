@@ -21,53 +21,66 @@ namespace exam_test
     public partial class TestChanger : Window
     {
         public static DataGrid datagrid;
-        
+
+        TestChanger db;
        
         public TestChanger()
         {
             InitializeComponent();
 
             InCharger inCharger = new InCharger();
-           
+
+            db = new TestChanger();
+            db.SpisokTestov.Load();  // в душе не гребу как там называется таблица тестов в БД
             Load();
 
         }
 
         private void Load()
         {
-            //myDataGrid.ItemsSource = InCharger.Test.ToList();
+            myDataGrid.ItemsSource = db.SpisokTestov.Local.ToBindingList();
             datagrid = myDataGrid;
 
         }
 
         private void updateBtn_Click(object sender, RoutedEventArgs e)
         {
-            
 
+            db.SaveChanges();
         }
 
         private void deleteBtn_Click(object sender, RoutedEventArgs e)
         {
 
-            // myDataGrid.ItemsSource = InCharger.Test.ToList();
-            datagrid = myDataGrid;
+            if (myDataGrid.SelectedItems.Count > 0)
+            {
+                for (int i = 0; i < myDataGrid.SelectedItems.Count; i++)
+                {
+                    InCharger inCharger = myDataGrid.SelectedItems[i] as InCharger;
+                    if (inCharger != null)
+                    {
+                        db.SpisokTestov.Remove(inCharger);
+                    }
+                }
+            }
+            db.SaveChanges();
         }
 
         public class InCharger
         {
 
-            int Test1 = 8;
+            public int Id { get; set; }
+            public int Question { get; set; }
 
-            public void Test()
-            {
-
-            }
+            public int Ansver { get; set; }
 
 
         }
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
+            db.SaveChanges();
+            db.Dispose();
             this.Close();
         }
     }
