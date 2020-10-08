@@ -8,7 +8,7 @@
         Title="TestChanger" Height="450" Width="800">
     <Grid>
         <DockPanel Height="419" VerticalAlignment="Bottom">
-            <DataGrid x:Name="myDataGrid" x:FieldModifier="public" AutoGenerateColumns="False" ColumnWidth="*" Margin="0,10,0,0" >
+            <DataGrid x:Name="myDataGrid" x:FieldModifier="public" AutoGenerateColumns="False" ColumnWidth="*" Margin="0,10,0,46" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="50"/>
                     <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="120"/>
@@ -31,5 +31,6 @@
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>
+        <Button x:Name="ButtonBack" Content="Back" Margin="697,379,10,10" Click="ButtonBack_Click"></Button>
     </Grid>
 </Window>

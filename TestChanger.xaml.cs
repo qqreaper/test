@@ -35,7 +35,7 @@ namespace exam_test
 
         private void Load()
         {
-            myDataGrid.ItemsSource = InCharger.Test.ToList();
+            //myDataGrid.ItemsSource = InCharger.Test.ToList();
             datagrid = myDataGrid;
 
         }
@@ -48,10 +48,9 @@ namespace exam_test
 
         private void deleteBtn_Click(object sender, RoutedEventArgs e)
         {
-          
-           
-            
-            myDataGrid.ItemsSource = InCharger.Test.ToList();
+
+            // myDataGrid.ItemsSource = InCharger.Test.ToList();
+            datagrid = myDataGrid;
         }
 
         public class InCharger
@@ -67,7 +66,9 @@ namespace exam_test
 
         }
 
-
-
+        private void ButtonBack_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
