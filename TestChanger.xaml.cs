@@ -35,7 +35,7 @@ namespace exam_test
 
         private void Load()
         {
-            myDataGrid.ItemsSource = inCharger.Test.ToList();
+            myDataGrid.ItemsSource = InCharger.Test.ToList();
             datagrid = myDataGrid;
 
         }
@@ -51,13 +51,18 @@ namespace exam_test
           
            
             
-            myDataGrid.ItemsSource = inCharger.Test.ToList();
+            myDataGrid.ItemsSource = InCharger.Test.ToList();
         }
 
         public class InCharger
         {
-            
 
+            int Test1 = 8;
+
+            public void Test()
+            {
+
+            }
 
 
         }
