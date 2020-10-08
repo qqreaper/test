@@ -23,32 +23,41 @@ namespace exam_test
         {
             InitializeComponent();
 
-            TestTestClass test = new TestTestClass();
+            AnswerClass answerObj = new AnswerClass();
 
-            questionField.Content = test.question;
+            questionField.Content = answerObj.question;
 
-            AddAnsvers(test.answers, this);
+            AddAnsvers(answerObj, this);
         }
-        private void AddAnsvers(List<string> ans, Test test)
+        private void AddAnsvers(AnswerClass answerObj, Test test)
         {
             int TopMargin = 0;
-            ans = new List<string>();
-            ans.Add("asd");
-            ans.Add("qwe");
-            ans.Add("zxc");
-            foreach (string item in ans)
-            {
+            //test
+            answerObj.answers = new List<string>();
+            answerObj.answers.Add("asd");
+            answerObj.answers.Add("qwe");
+            answerObj.answers.Add("zxc");
+            //test
 
+            foreach (string item in answerObj.answers)
+            {
+                if(answerObj.isRadio)
                 test.AnsversGrid.Children.Add(new RadioButton() { Content = item, Margin = new Thickness(10, TopMargin, 10, 10) });
+                else
+                    test.AnsversGrid.Children.Add(new CheckBox() { Content = item, Margin = new Thickness(10, TopMargin, 10, 10) });
+
+
                 TopMargin += 20;
             }
         }
-        public class TestTestClass
+        public class AnswerClass
         {
+            public bool isRadio = true;
             public string question = "qweqwe";
             public List<string> answers;
             public int rightQnum = 2;
-            bool isRadio;
+            public List<int> rightAnsvers;
+           
         }
     }
 }
