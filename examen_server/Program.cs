@@ -18,52 +18,40 @@ namespace examen_server
     }
     public class Server
     {
-        static int port = 8005;
+        const int port = 8888; 
         Logger logger = new Logger();
         public void StartServer()
         {
-            IPEndPoint ipPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
-
-
-            Socket listenSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            TcpListener server = null;
             try
             {
+                IPAddress localAddr = IPAddress.Parse("127.0.0.1");
+                server = new TcpListener(localAddr, port);
 
-                listenSocket.Bind(ipPoint);
-
-
-                listenSocket.Listen(10);
-                logger.Log("Сервер запущен. Ожидание подключений...");
+                server.Start();
 
                 while (true)
                 {
-                    Socket handler = listenSocket.Accept();
-
-                    StringBuilder builder = new StringBuilder();
-                    int bytes = 0;
-                    byte[] data = new byte[256];
-
-                    do
-                    {
-                        bytes = handler.Receive(data);
-                        builder.Append(Encoding.Unicode.GetString(data, 0, bytes));
-                    }
-                    while (handler.Available > 0);
-
-                    logger.Log(DateTime.Now.ToShortTimeString() + ": " + builder.ToString());
-
-
-                    string message = "ваше сообщение доставлено";
-                    data = Encoding.Unicode.GetBytes(message);
-                    handler.Send(data);
-
-                    handler.Shutdown(SocketShutdown.Both);
-                    handler.Close();
+                    logger.Log("Ожидание подключений... ");
+                    TcpClient client = server.AcceptTcpClient();
+                    logger.Log("Подключен клиент. Выполнение запроса...");
+                    NetworkStream stream = client.GetStream();
+                    string response = "тест";
+                    byte[] data = Encoding.UTF8.GetBytes(response);
+                    stream.Write(data, 0, data.Length);
+                    logger.Log($"Отправлено сообщение: {response}");
+                    stream.Close();
+                    client.Close();
                 }
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                logger.Log(ex.Message);
+                logger.Log(e.Message);
+            }
+            finally
+            {
+                if (server != null)
+                    server.Stop();
             }
         }
     }
@@ -71,6 +59,7 @@ namespace examen_server
     {
         static void Main(string[] args)
         {
+            
             Server _server = new Server();
             Thread server = new Thread(new ThreadStart(_server.StartServer));
             server.Start();
