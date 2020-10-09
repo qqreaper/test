@@ -27,7 +27,10 @@ namespace exam_test
 
             questionField.Content = answerObj.question;
 
+            if(answerObj.isRadio)
             AddAnsversRadio(answerObj, this);
+            else
+            AddAnsversCheck(answerObj, this);
 
 
         }
@@ -45,46 +48,75 @@ namespace exam_test
             //test
             int i = 0;
 
-            if (answerObj.isRadio)
-                RadioButton[] radioButtons = new RadioButton[answerObj.questionQuant];
-            else
-                CheckBox[] chekBoxes = new CheckBox[answerObj.questionQuant];
+            RadioButton[] radioButtons = new RadioButton[answerObj.questionQuant];
+
 
             foreach (string item in answerObj.answers)
             {
-
-                if (answerObj.isRadio)
-                {
-                    radioButtons[i] = new RadioButton() { Name = "box" + Convert.ToString(boxName), Content = item, Margin = new Thickness(10, TopMargin, 10, 10) };
-                    test.AnsversGrid.Children.Add(radioButtons[i]);
-                }
-                else
-                {
-                    chekBoxes[i] = new RadioButton() { Name = "box" + Convert.ToString(boxName), Content = item, Margin = new Thickness(10, TopMargin, 10, 10) };
-                    test.AnsversGrid.Children.Add(chekBoxes[i]);
-                }
-
-
-                //foreach (var item in test.AnsversGrid.Children.)
-                //{
-                //    if (item.Name == "box" + Convert.ToString(1)) ;
+                radioButtons[i] = new RadioButton() { Name = "box" + Convert.ToString(boxName), Content = item, Margin = new Thickness(10, TopMargin, 10, 10) };
+                test.AnsversGrid.Children.Add(radioButtons[i]);
+                radioButtons[i].Unchecked += checkBox_Unchecked;
+                radioButtons[i].Checked += checkBox_Checked;
 
                 i++;
                 TopMargin += 20;
                 boxName++;
             }
-
-
         }
-    }
-    public class AnswerClass
+
+    private void AddAnsversCheck(AnswerClass answerObj, Test test)
     {
-        public bool isRadio = true;
-        public string question = "qweqwe";
-        public List<string> answers;
-        public int rightQnum = 2;
-        public List<int> rightAnsvers;
-        public int questionQuant = 3;
+        int TopMargin = 0;
+        int boxName = 1;
+        //test
+        answerObj.answers = new List<string>();
+        answerObj.answers.Add("asd");
+        answerObj.answers.Add("qwe");
+        answerObj.answers.Add("zxc");
+
+
+        //test
+        int i = 0;
+
+
+        CheckBox[] checkBoxes = new CheckBox[answerObj.questionQuant];
+
+        foreach (string item in answerObj.answers)
+        {
+            checkBoxes[i] = new CheckBox() {  Name = "box" + Convert.ToString(boxName), Content = item, Margin = new Thickness(10, TopMargin, 10, 10) };
+            test.AnsversGrid.Children.Add(checkBoxes[i]);
+                checkBoxes[i].Unchecked += checkBox_Unchecked;
+                checkBoxes[i].Checked += checkBox_Checked;
+
+            i++;
+            TopMargin += 20;
+            boxName++;
+        }
+
+         
+           
+    }
+
+        private void checkBox_Checked(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(this.Name + " отмечен");
+        }
+        private void checkBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(this.Name + " не отмечен");
+        }
 
     }
+
+
+
+}
+public class AnswerClass
+{
+    public bool isRadio = true;
+    public string question = "qweqwe";
+    public List<string> answers;
+    public int rightQnum = 2;
+    public List<int> rightAnsvers;
+    public int questionQuant = 3;
 }
