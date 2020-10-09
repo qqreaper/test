@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,12 +8,9 @@ using System.Net;
 using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleApp7
 {
-
-
     abstract class TemplateAbstract
     {
         public abstract IPAddress ParseIpAdress(string Ip);
@@ -49,7 +45,6 @@ namespace ConsoleApp7
 
         [Key]
         public int Id { get; set; }
-        [MaxLength(30)]
         public string Login
         {
             get { return login; }
@@ -59,7 +54,6 @@ namespace ConsoleApp7
                 OnPropertyChanged("Login");
             }
         }
-        [MaxLength(30)]
         public string PassHash
         {
             get { return passHash; }
@@ -91,7 +85,6 @@ namespace ConsoleApp7
 
         [Key]
         public int Id { get; set; }
-        [MaxLength(50)]
         public string TestName
         {
             get { return testName; }
@@ -109,33 +102,32 @@ namespace ConsoleApp7
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
     }
-    public class Quetion : INotifyPropertyChanged
+    public class Question : INotifyPropertyChanged
     {
-        private string quetionText;
-        private int? testId;
+        private string questionText;
+        private int? testsId;
 
         [Key]
         public int Id { get; set; }
-        [MaxLength(60)]
-        public string QuetionText
+        public string QuestionText
         {
-            get { return quetionText; }
+            get { return questionText; }
             set
             {
-                quetionText = value;
-                OnPropertyChanged("QuetionText");
+                questionText = value;
+                OnPropertyChanged("QuestionText");
             }
         }
-        public int? TestId
+        public int? TestsId
         {
-            get { return testId; }
+            get { return testsId; }
             set
             {
-                testId = value;
-                OnPropertyChanged("TestId");
+                testsId = value;
+                OnPropertyChanged("TestsId");
             }
         }
-        [ForeignKey("TestId")]
+        [ForeignKey("TestsId")]
         public Test test { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -147,20 +139,19 @@ namespace ConsoleApp7
     }
     public class Ansver : INotifyPropertyChanged
     {
-        private string ansversText;
+        private string ansverText;
         private int isRight;
         private int? questionsId;
 
         [Key]
-        public int Id{get; set; }
-        [MaxLength(40)]
-        public string AnsversText
+        public int Id { get; set; }
+        public string AnsverText
         {
-            get { return ansversText; }
+            get { return ansverText; }
             set
             {
-                ansversText = value;
-                OnPropertyChanged("AnsversText");
+                ansverText = value;
+                OnPropertyChanged("AnsverText");
             }
         }
         public int IsRight
@@ -182,7 +173,7 @@ namespace ConsoleApp7
             }
         }
         [ForeignKey("QuestionsId")]
-        Quetion quetion { get; set; }
+        Question question { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")
@@ -196,6 +187,8 @@ namespace ConsoleApp7
         public ApplicationContext() : base("DefaultConnection") { }
         public DbSet<User> Users { get; set; }
         public DbSet<Test> Tests { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<Ansver> Ansvers { get; set; }
     }
 
     class Program
@@ -206,8 +199,10 @@ namespace ConsoleApp7
         {
             using(ApplicationContext applicationContext = new ApplicationContext())
             {
-
-                Console.WriteLine(applicationContext.Users.ToList().Where(x => x.Login == "asd").Last().Login);
+                Console.WriteLine(applicationContext.Users.ToList().Count);
+                Console.WriteLine(applicationContext.Tests.ToList().Count);
+                Console.WriteLine(applicationContext.Questions.ToList().Count);
+                Console.WriteLine(applicationContext.Ansvers.ToList().Count);
                 Console.WriteLine("Ok");
             }
 
