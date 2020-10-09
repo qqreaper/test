@@ -199,10 +199,22 @@ namespace ConsoleApp7
         {
             using(ApplicationContext applicationContext = new ApplicationContext())
             {
-                Console.WriteLine(applicationContext.Users.ToList().Count);
-                Console.WriteLine(applicationContext.Tests.ToList().Count);
-                Console.WriteLine(applicationContext.Questions.ToList().Count);
-                Console.WriteLine(applicationContext.Ansvers.ToList().Count);
+                applicationContext.Users.Add(new User { Login = "asd", PassHash = "asd".GetHashCode().ToString(), CompliteTests = 0 });
+                applicationContext.SaveChanges();
+                applicationContext.Tests.Add(new Test { TestName = "test"});
+                applicationContext.SaveChanges();
+                applicationContext.Questions.Add(new Question { QuestionText = "question", TestsId = 1});
+                applicationContext.SaveChanges();
+                applicationContext.Ansvers.Add(new Ansver { AnsverText = "ansver1", IsRight = 1, QuestionsId = 1 });
+                applicationContext.SaveChanges();
+                Console.WriteLine(string.Format("{0} {1} {2}", applicationContext.Users.ToList().Where(x => x.Id == 1).Last().Login, applicationContext.Users.ToList().Where(x => x.Id == 1).Last().PassHash,
+                    applicationContext.Users.ToList().Where(x => x.Id == 1).Last().CompliteTests.ToString()));
+                Console.WriteLine(applicationContext.Tests.ToList().Where(x => x.Id == 1).Last().TestName);
+                Console.WriteLine(string.Format("{0} {1}", applicationContext.Questions.ToList().Where(x => x.Id == 1).Last().QuestionText,
+                    applicationContext.Questions.ToList().Where(x => x.Id == 1).Last().TestsId.ToString()));
+                Console.WriteLine(string.Format("{0} {1} {2}", applicationContext.Ansvers.ToList().Where(x => x.Id == 1).Last().AnsverText,
+                    applicationContext.Ansvers.ToList().Where(x => x.Id == 1).Last().IsRight.ToString(),
+                    applicationContext.Ansvers.ToList().Where(x => x.Id == 1).Last().QuestionsId.ToString()));
                 Console.WriteLine("Ok");
             }
 
