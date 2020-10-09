@@ -62,8 +62,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeFirst.cs" />
+    <Compile Include="DataBaseWork.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServerTemplate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
