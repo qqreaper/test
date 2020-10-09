@@ -16,3 +16,21 @@ D:\Vs projects\ConsoleApp7\ConsoleApp7\obj\Debug\ConsoleApp7.csproj.CoreCompileI
 D:\Vs projects\ConsoleApp7\ConsoleApp7\obj\Debug\ConsoleApp7.csproj.CopyComplete
 D:\Vs projects\ConsoleApp7\ConsoleApp7\obj\Debug\ConsoleApp7.exe
 D:\Vs projects\ConsoleApp7\ConsoleApp7\obj\Debug\ConsoleApp7.pdb
+C:\Users\User\Documents\GitHub\test\examen_server\ConsoleApp7\bin\Debug\tests.db
+C:\Users\User\Documents\GitHub\test\examen_server\ConsoleApp7\bin\Debug\ConsoleApp7.exe.config
+C:\Users\User\Documents\GitHub\test\examen_server\ConsoleApp7\bin\Debug\ConsoleApp7.exe
+C:\Users\User\Documents\GitHub\test\examen_server\ConsoleApp7\bin\Debug\ConsoleApp7.pdb
+C:\Users\User\Documents\GitHub\test\examen_server\ConsoleApp7\bin\Debug\EntityFramework.dll
+C:\Users\User\Documents\GitHub\test\examen_server\ConsoleApp7\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\User\Documents\GitHub\test\examen_server\ConsoleApp7\bin\Debug\System.Data.SQLite.dll
+C:\Users\User\Documents\GitHub\test\examen_server\ConsoleApp7\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\User\Documents\GitHub\test\examen_server\ConsoleApp7\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\User\Documents\GitHub\test\examen_server\ConsoleApp7\bin\Debug\EntityFramework.xml
+C:\Users\User\Documents\GitHub\test\examen_server\ConsoleApp7\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\User\Documents\GitHub\test\examen_server\ConsoleApp7\bin\Debug\System.Data.SQLite.xml
+C:\Users\User\Documents\GitHub\test\examen_server\ConsoleApp7\bin\Debug\System.Data.SQLite.dll.config
+C:\Users\User\Documents\GitHub\test\examen_server\ConsoleApp7\obj\Debug\ConsoleApp7.csprojAssemblyReference.cache
+C:\Users\User\Documents\GitHub\test\examen_server\ConsoleApp7\obj\Debug\ConsoleApp7.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\GitHub\test\examen_server\ConsoleApp7\obj\Debug\ConsoleApp7.csproj.CopyComplete
+C:\Users\User\Documents\GitHub\test\examen_server\ConsoleApp7\obj\Debug\ConsoleApp7.exe
+C:\Users\User\Documents\GitHub\test\examen_server\ConsoleApp7\obj\Debug\ConsoleApp7.pdb

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -45,8 +47,9 @@ namespace ConsoleApp7
         private string passHash;
         private int compliteTests;
 
+        [Key]
         public int Id { get; set; }
-
+        [MaxLength(30)]
         public string Login
         {
             get { return login; }
@@ -56,6 +59,7 @@ namespace ConsoleApp7
                 OnPropertyChanged("Login");
             }
         }
+        [MaxLength(30)]
         public string PassHash
         {
             get { return passHash; }
@@ -81,11 +85,117 @@ namespace ConsoleApp7
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
     }
+    public class Test : INotifyPropertyChanged
+    {
+        private string testName;
 
+        [Key]
+        public int Id { get; set; }
+        [MaxLength(50)]
+        public string TestName
+        {
+            get { return testName; }
+            set
+            {
+                testName = value;
+                OnPropertyChanged("TestName");
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+    }
+    public class Quetion : INotifyPropertyChanged
+    {
+        private string quetionText;
+        private int? testId;
+
+        [Key]
+        public int Id { get; set; }
+        [MaxLength(60)]
+        public string QuetionText
+        {
+            get { return quetionText; }
+            set
+            {
+                quetionText = value;
+                OnPropertyChanged("QuetionText");
+            }
+        }
+        public int? TestId
+        {
+            get { return testId; }
+            set
+            {
+                testId = value;
+                OnPropertyChanged("TestId");
+            }
+        }
+        [ForeignKey("TestId")]
+        public Test test { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+    }
+    public class Ansver : INotifyPropertyChanged
+    {
+        private string ansversText;
+        private int isRight;
+        private int? questionsId;
+
+        [Key]
+        public int Id{get; set; }
+        [MaxLength(40)]
+        public string AnsversText
+        {
+            get { return ansversText; }
+            set
+            {
+                ansversText = value;
+                OnPropertyChanged("AnsversText");
+            }
+        }
+        public int IsRight
+        {
+            get { return isRight; }
+            set
+            {
+                isRight = value;
+                OnPropertyChanged("IsRight");
+            }
+        }
+        public int? QuestionsId
+        {
+            get { return questionsId; }
+            set
+            {
+                questionsId = value;
+                OnPropertyChanged("QuestionsId");
+            }
+        }
+        [ForeignKey("QuestionsId")]
+        Quetion quetion { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+    }
     public class ApplicationContext : DbContext
     {
         public ApplicationContext() : base("DefaultConnection") { }
         public DbSet<User> Users { get; set; }
+        public DbSet<Test> Tests { get; set; }
     }
 
     class Program
